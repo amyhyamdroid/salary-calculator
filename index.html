@@ -38,7 +38,8 @@
         <div class="bg-white rounded-2xl shadow-2xl p-6 sm:p-10">
 
             <!-- Tab Navigation -->
-            <div class="flex border-b border-gray-200 mb-6">
+            <!-- Increased border thickness for better separation -->
+            <div class="flex border-b border-gray-300 mb-6">
                 <button 
                     id="tab-base-salary"
                     data-mode="1"
@@ -198,16 +199,22 @@
         function updateUIForMode(mode) {
             calculationMode = mode;
 
-            // Reset tab styles
+            // 1. Reset all tabs to inactive styling (gray text, transparent bottom border)
             tabButtons.forEach(btn => {
-                btn.classList.remove('text-indigo-600', 'border-indigo-600', 'bg-indigo-50');
-                btn.classList.add('text-gray-500', 'hover:text-gray-700', 'hover:bg-gray-50');
+                // Remove active classes
+                btn.classList.remove('text-indigo-900', 'border-b-4', 'border-indigo-600', 'bg-white');
+                // Add inactive classes (gray text, hover effect, transparent border for structure)
+                btn.classList.add('text-gray-500', 'hover:text-indigo-600', 'hover:bg-gray-50', 'border-b-4', 'border-transparent');
             });
 
-            // Set active tab styles
+            // 2. Set active tab styling (bold text, thick blue border, white background)
             const activeTab = document.querySelector(`.tab-button[data-mode="${mode}"]`);
-            activeTab.classList.remove('text-gray-500', 'hover:text-gray-700', 'hover:bg-gray-50');
-            activeTab.classList.add('text-indigo-700', 'border-indigo-600', 'bg-indigo-100');
+            
+            // Remove inactive classes
+            activeTab.classList.remove('text-gray-500', 'hover:text-indigo-600', 'hover:bg-gray-50', 'border-transparent');
+            
+            // Add active classes (bold indigo text, thick indigo bottom border)
+            activeTab.classList.add('text-indigo-900', 'border-b-4', 'border-indigo-600', 'bg-white');
 
             // Update Input Labels and Help Text
             if (mode === 1) {
